@@ -25,7 +25,9 @@ namespace Middleware_NetCore6.Controllers
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)],
+                TokenClient = AuthenticationAPI.GetTokenClient(HttpContext),
+                TokenApplication = AuthenticationAPI.GetTokenApplication(HttpContext)
             })
             .ToArray();
         }

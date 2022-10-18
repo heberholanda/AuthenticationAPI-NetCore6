@@ -54,5 +54,17 @@
 
             await _next(context);
         }
+
+        public static string GetTokenClient(HttpContext context)
+        {
+            context.Request.Headers.TryGetValue(TokenCLient, out var collectedTokenClient);
+            return collectedTokenClient;
+        }
+
+        public static string GetTokenApplication(HttpContext context)
+        {
+            context.Request.Headers.TryGetValue(TokenApplication, out var collectedTokenApplication);
+            return collectedTokenApplication;
+        }
     }
 }
