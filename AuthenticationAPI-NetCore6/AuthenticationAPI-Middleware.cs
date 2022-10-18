@@ -1,4 +1,4 @@
-﻿namespace Middleware_NetCore6
+﻿namespace AuthenticationAPI_NetCore6
 {
     public class AuthenticationAPI
     {

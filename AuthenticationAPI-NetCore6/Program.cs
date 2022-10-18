@@ -1,4 +1,4 @@
-using Middleware_NetCore6;
+using AuthenticationAPI_NetCore6;
 
 var builder = WebApplication.CreateBuilder(args);
 

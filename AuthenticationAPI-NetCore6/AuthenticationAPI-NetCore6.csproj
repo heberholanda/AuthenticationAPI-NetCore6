@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Middleware_NetCore6</RootNamespace>
+    <RootNamespace>AuthenticationAPI_NetCore6</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
