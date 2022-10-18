@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Middleware_NetCore6.Controllers
@@ -18,8 +19,8 @@ namespace Middleware_NetCore6.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("/WeatherForecast")]
+        public IEnumerable<WeatherForecast> GetWeatherForecast()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -28,6 +29,19 @@ namespace Middleware_NetCore6.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)],
                 TokenClient = AuthenticationAPI.GetTokenClient(HttpContext),
                 TokenApplication = AuthenticationAPI.GetTokenApplication(HttpContext)
+            })
+            .ToArray();
+        }
+
+        [HttpGet("/GetAll")]
+        [AllowAnonymous]
+        public IEnumerable<WeatherForecast> GetAll()
+        {
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
         }
