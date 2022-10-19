@@ -11,7 +11,8 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Authentication API Tokens
-app.UseMiddleware<AuthenticationAPI>();
+// Comment out the next line if you want to test the Authentication Api only with Attribute.
+app.UseMiddleware<AuthenticationApi>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

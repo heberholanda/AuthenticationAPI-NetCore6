@@ -10,7 +10,7 @@ namespace AuthenticationAPI_NetCore6
 
         public string? Summary { get; set; }
 
-        public string TokenClient { get; set; }
-        public string TokenApplication { get; set; }
+        public string? TokenClient { get; set; }
+        public string? TokenApplication { get; set; }
     }
 }
