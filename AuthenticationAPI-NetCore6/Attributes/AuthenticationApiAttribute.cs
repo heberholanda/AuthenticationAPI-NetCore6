@@ -10,12 +10,12 @@ namespace AuthenticationAPI_NetCore6.Attributes
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             // Token Client
-            if (!context.HttpContext.Request.Headers.TryGetValue(AuthenticationApi_Helpers.TokenCLient, out var collectedTokenClient))
+            if (!context.HttpContext.Request.Headers.TryGetValue(AuthenticationApi_Helpers.TokenClient, out var collectedTokenClient))
             {
                 context.Result = new ContentResult()
                 {
                     StatusCode = 401,
-                    Content = $"{AuthenticationApi_Helpers.TokenCLient} is required!"
+                    Content = $"{AuthenticationApi_Helpers.TokenClient} is required!"
                 };
                 return;
             }
@@ -34,7 +34,7 @@ namespace AuthenticationAPI_NetCore6.Attributes
             // Get Tokens
             var appSettings = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
             var tokens = appSettings.GetSection("AuthenticationAPI");
-            var _tokenClient = tokens.GetValue<string>(AuthenticationApi_Helpers.TokenCLient);
+            var _tokenClient = tokens.GetValue<string>(AuthenticationApi_Helpers.TokenClient);
             var _tokenApplication = tokens.GetValue<string>(AuthenticationApi_Helpers.TokenApplication);
 
             // Token-Client Validation
@@ -43,7 +43,7 @@ namespace AuthenticationAPI_NetCore6.Attributes
                 context.Result = new ContentResult()
                 {
                     StatusCode = 401,
-                    Content = $"{AuthenticationApi_Helpers.TokenCLient} - Unauthorized!"
+                    Content = $"{AuthenticationApi_Helpers.TokenClient} - Unauthorized!"
                 };
                 return;
             }

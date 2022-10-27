@@ -2,12 +2,12 @@
 {
     public static class AuthenticationApi_Helpers
     {
-        public const string TokenCLient = "Token-Client";
+        public const string TokenClient = "Token-Client";
         public const string TokenApplication = "Token-Application";
 
         public static string GetTokenClient(HttpContext context)
         {
-            context.Request.Headers.TryGetValue(TokenCLient, out var collectedTokenClient);
+            context.Request.Headers.TryGetValue(TokenClient, out var collectedTokenClient);
             return collectedTokenClient;
         }
 
