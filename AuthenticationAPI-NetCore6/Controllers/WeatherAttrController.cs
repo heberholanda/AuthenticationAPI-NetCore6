@@ -4,9 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuthenticationAPI_NetCore6.Controllers
 {
+    /// <summary>
+    /// Controller de exemplo que demonstra o uso do atributo [AuthenticationApiAttribute]
+    /// para autenticação baseada em tokens. Este controller retorna previsões meteorológicas
+    /// e exibe os tokens utilizados na requisição.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
-    [AuthenticationApiAttribute]
+    [AuthenticationApiAttribute] // Aplica autenticação via atributo apenas neste controller
     public class WeatherAttrController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -21,6 +26,11 @@ namespace AuthenticationAPI_NetCore6.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retorna uma lista de previsões meteorológicas com os tokens de autenticação utilizados.
+        /// Este endpoint requer autenticação via Token-Client e Token-Application.
+        /// </summary>
+        /// <returns>Uma coleção de previsões meteorológicas incluindo os tokens recebidos.</returns>
         [HttpGet]
         public IEnumerable<WeatherForecast> GetWeatherForecast()
         {

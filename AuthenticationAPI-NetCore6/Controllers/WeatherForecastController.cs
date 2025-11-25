@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuthenticationAPI_NetCore6.Controllers
 {
+    /// <summary>
+    /// Controller de exemplo que demonstra diferentes cenários de autenticação.
+    /// Inclui endpoints protegidos pelo middleware de autenticação e endpoints anônimos.
+    /// </summary>
     [ApiController]
     [Route("[controller]/[action]")]
     public class WeatherForecastController : ControllerBase
@@ -20,6 +24,11 @@ namespace AuthenticationAPI_NetCore6.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retorna uma lista de previsões meteorológicas com os tokens de autenticação utilizados.
+        /// Este endpoint está protegido pelo middleware de autenticação global.
+        /// </summary>
+        /// <returns>Uma coleção de previsões meteorológicas incluindo os tokens recebidos.</returns>
         [HttpGet]
         public IEnumerable<WeatherForecast> GetWeatherForecast()
         {
@@ -34,6 +43,12 @@ namespace AuthenticationAPI_NetCore6.Controllers
             .ToArray();
         }
 
+        /// <summary>
+        /// Retorna uma lista de previsões meteorológicas sem autenticação.
+        /// O atributo [AllowAnonymous] permite acesso sem validação de tokens,
+        /// mesmo com o middleware de autenticação ativo.
+        /// </summary>
+        /// <returns>Uma coleção de previsões meteorológicas sem informações de token.</returns>
         [HttpGet]
         [AllowAnonymous]
         public IEnumerable<WeatherForecast> GetAllAnonymous()
